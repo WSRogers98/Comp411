@@ -11,7 +11,7 @@ int main()
   scanf("%f", &r);
 
   a = PI * r * r;
-// this hurts my eyes
+
   printf("Circle's area is %3.2f (sq in).\n", a);
 }
 
