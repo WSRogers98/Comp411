@@ -10,7 +10,7 @@ int main()
   scanf("%f", &r);
 
   a =  r * r;
-// this hurts my eyes
+
   printf("Square area is %3.2f (sq in).\n", a);
 }
 
