@@ -19,7 +19,6 @@ for (int i = 0; i < NUM; i++) {
         fgets(Strings[i], LEN, stdin);
     }
 puts("\nHere are the strings in the order you entered:");
-//why did this code demand I used a pointer? Was hoping to avoid those since th$
 for (int i = 0; i < NUM; i++) {
      char *b=  Strings[i];
        while (*b != '\0') {
@@ -36,7 +35,7 @@ for (int i = NUM - 1; i > 0; i--) {
    }
    }
 }
-//would not let me use regular char, it kept making me use a pointer so I guess$
+
 puts("\nIn alphabetical order, the strings are:");   
  for (int i = 0; i < NUM; i++) {
  char *c= Strings[i];
