@@ -45,7 +45,6 @@ printf("Please enter %d strings, one per line:\n", NUM);
 for (int i = 0; i < NUM; i++) {
 fgets(Strings[i], LEN, stdin);
 }
-//shoutout to the TA who tought me pointers
 puts("\nHere are the strings in the order you entered:");
 for (int i = 0; i < NUM; i++) {
 char *p = Strings[i];
