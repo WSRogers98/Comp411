@@ -1,0 +1,115 @@
+#I wrote this in google docs because I couldnt figure out how to make the mips bigger lol thanks for telling me how to though on piazza
+#void quickSort(int* arr, int left, int right) {
+quickSort:
+# arr is $a0
+ # left is $a1
+ # right is $a2
+#int i = left;
+#i is $t0
+add $t0, $0, $a1
+#int j = right;
+# j is $t1
+add $t1, $0, $a2
+#int tmp = left + right;
+#temp is $t2
+add $t2, $t0, $t1
+#tmp = tmp / 2;
+srl $t2, $t2, 1
+sll $t2, $t2, 2
+add $t2, $t2, $a0
+#int pivot = arr[tmp];
+#pivot is $t3
+lw $t3, 0($t2)
+#int *pi, *pj, ai, aj;
+#/* partition */
+#while (1) {
+while1:
+#if (!(i <= j)) break;
+slt $t4, $t1, $t0
+bne $t4, $0, while1e 
+#while (1) {
+while2:
+#pi = arr + i;
+#pi is $t5
+sll $t5, $t0, 2
+add $t5, $a0, $t5
+#ai = *pi;
+lw $t6, 0($t5)
+#ai is $t6
+#if (!(ai < pivot)) break;
+slt $t4, $t6, $t3
+beq $t4, $0, while2e
+#i++;
+addi $t0, $t0, 1
+j while2
+#}
+while2e:
+#while (1) {
+while3:
+#pj = arr + j;
+#pj is $t7
+sll $t7, $t1, 2
+add $t7, $t7, $a0
+
+#aj = *pj;
+#aj is $t8
+lw $t8, 0($t7)
+#if (!(aj > pivot)) break;
+slt $t4, $t3, $t8
+beq $t4, $0, while3e
+#j--;
+addi $t1, $t1, -1
+j while3
+#}
+while3e:
+#if (i <= j) {
+slt $t4, $t1, $t0
+bne $t4, $0, if1e
+#*pi = aj;
+
+sw $t8, 0($t5)
+#*pj = ai;
+sw $t6, 0($t7)
+#i++;
+addi $t0, $t0, 1
+#j--;
+addi $t1, $t1, -1
+#}
+if1e:
+j while1
+#};
+while1e:
+#/* recursion */
+#if (left < j) {
+slt $t4, $a1, $t1
+beq $t4, $0, if2e
+#/* you'll need to save arr, i, right, and $ra on the stack
+# before making this call and restore them when you get
+# back here */
+# quickSort(arr, left, j);
+addi $sp, $sp, -16
+sw $ra, 12($sp)
+sw $a0, 8($sp)
+sw $a2, 4($sp)
+sw $t0, 0($sp)
+add $a2, $0, $t1
+jal quickSort
+lw $ra, 12($sp)
+lw $a0, 8($sp)
+lw $a2, 4($sp)
+lw $t0, 0($sp)
+addi $sp, $sp, 16
+#}
+if2e:
+#if (i < right) {
+slt $t4, $t0, $a2
+beq $t4, $0, if3e
+#/* this is tail recursion, we can simply tweak the parameters and
+#* jump to the top */
+#quickSort(arr, i, right);
+add $a1, $0, $t0
+j quickSort
+#}
+if3e:
+jr $ra
+#}
