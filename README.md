@@ -1,6 +1,7 @@
 # Comp411
 Comp411 Labs
 
-This is for my personal use only, please do not copy as your own work.
+This repository is for personal  and resume use only, please do not copy as your own work.
+copying code is an honor court violation.
 
 Some of the indentation of lines of code is incorrected due to an error moving from one repository to another
